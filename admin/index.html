@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>United Cassettes Admin Login</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<style type="text/css">
+		body {
+			font-size: 11px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Login:</h2>
+	<form>
+		<input type="text" name="user" placeholder="username">
+		<input type="password" name="pw" placeholder="password">
+		<input type="submit" name="submit" value="Log In">
+	</form>
+	<h3></h3>
+	<script type="text/javascript">
+	$('form').on('submit', function(e){
+		e.preventDefault();
+
+		$.post('validateAdmin.php',$(this).serialize(),function(response){
+			if (response == 'fail')
+				$('h3').html('Wrong password/username');
+			else
+				location.href=response+'/labels.php';
+		});
+	})
+	</script>
+</body>
+</html>
